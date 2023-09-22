@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    import promptSync from "prompt-sync";
+    let MENU = {
+        "espresso": {
+            "ingredients": {
+                "water": 50,
+                "coffee": 18,
+            },
+            "cost": 4.7,
+        },
+
+        "latte": {
+            "ingredients": {
+                "water": 200,
+                "milk": 150,
+                "coffee": 24,
+            },
+            "cost": 12.5,
+        },
+
+        "cappuccino": {
+            "ingredients": {
+                "water": 250,
+                "milk": 100,
+                "coffee": 24,
+            },
+            "cost": 10.2,
+        },
+    }
+
+
+    let resources = {
+        "water": 300,
+        "milk": 200,
+        "coffee": 100,
+    }
+
+    let coins = {
+        "quarters": 0.25,
+        "half": 0.50,
+        "threeFourth": 0.75,
+        "full": 1.00
+    }
+
+    function CoffeeMachine() {
+        // const prompt = require("prompt-sync")();
+        const prompt = promptSync();
+        const drink = prompt("What would you like? (espresso/latte/cappuccino): ");
+        const quarters = prompt("How many quarters?: ");
+        const half = prompt("How many half?: ");
+        const threeFourth = prompt("How many threeFourth?: ");
+        const full = prompt("How many full?: ");
+        const total = (quarters * coins[quarters]) + (half * coins[half]) + (threeFourth * coins[threeFourth]) + (full * coins[full]);
+        const cost = MENU[drink][cost];
+        const water = MENU[drink][ingredients][water];
+        const milk = MENU[drink][ingredients][milk];
+        const coffee = MENU[drink][ingredients][coffee];
+        const waterLeft = resources[water] - water;
+        const milkLeft = resources[milk] - milk;
+        const coffeeLeft = resources[coffee] - coffee;
+        const change = total - cost;
+        if (drink === "espresso" && drink === "latte" && drink === "cappuccino") {
+            if (total >= cost) {
+                if (waterLeft > 0 && milkLeft > 0 && coffeeLeft > 0) {
+                    console.log(`Here is your ${drink} ☕. Enjoy!`);
+                    console.log(`Here is your change ${change}`);
+                }
+                else {
+                    console.log("Not enough resources");
+                }
+            }
+            else {
+                console.log("Not enough money");
+            }
+        }
+        else {
+            console("Enter valid drink");
+        }
+
+        console.log("this is sitara");
+    }
+    CoffeeMachine();
+</script>
+
+</html>
